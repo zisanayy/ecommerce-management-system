@@ -1,0 +1,255 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>E-Commerce Management System</title>
+
+    <link rel="stylesheet" href="style.css">
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
+</head>
+<body>
+<div id="login-screen" class="login-screen">
+
+    <div class="login-card">
+        <h1>🛒 Zişan Admin</h1>
+        <p>Administrator Portal</p>
+
+        <input id="login-email" type="email" placeholder="Email">
+        <input id="login-password" type="password" placeholder="Password">
+
+        <button onclick="login()">Sign In</button>
+
+    </div>
+
+</div>    
+
+<div id="toast"></div>
+
+<div class="layout" id="dashboard">
+
+    <!-- Sidebar -->
+
+    <aside class="sidebar">
+
+        <div class="logo">
+            🛒 <span>Zişan Admin</span>
+        </div>
+
+        <nav>
+            <a href="#dashboard-section">🏠 Dashboard</a>
+            <a href="#products-section">📦 Products</a>
+            <a href="#statistics-section">📊 Statistics</a>
+        </nav>
+
+    </aside>
+
+    <!-- Main -->
+
+    <main class="main-content">
+
+        <!-- Header -->
+
+        <header class="topbar">
+        
+            <div>
+                <h1>E-Commerce Dashboard</h1>
+                <p>Manage products, inventory and business performance.</p>
+            </div>
+        
+            <button id="theme-button" onclick="toggleTheme()">
+                🌙 Dark Mode
+            </button>
+            <button id="logout-button" onclick="logout()">
+                🚪 Logout
+            </button>
+        
+        </header>
+
+        <!-- Statistics -->
+
+        <section class="cards" id="dashboard-section">
+
+            <div class="card">
+
+                <span>📦</span>
+
+                <h3>Products</h3>
+
+                <p id="product-count">0</p>
+
+            </div>
+
+            <div class="card">
+
+                <span>📚</span>
+
+                <h3>Total Stock</h3>
+
+                <p id="total-stock">0</p>
+
+            </div>
+
+            <div class="card">
+
+                <span>💰</span>
+
+                <h3>Total Value</h3>
+
+                <p id="total-value">0 PLN</p>
+
+            </div>
+
+            <div class="card">
+
+                <span>📈</span>
+
+                <h3>Average Price</h3>
+
+                <p id="average-price">0 PLN</p>
+
+            </div>
+
+            <div class="card">
+
+                <span>⭐</span>
+
+                <h3>Categories</h3>
+
+                <p id="category-count">0</p>
+
+            </div>
+
+        </section>
+
+        <!-- Progress -->
+
+        <section class="panel search-panel">
+        
+            <h2>📈 Inventory Progress</h2>
+        
+            <div class="progress-box">
+        
+                <div class="progress-bar">
+                    <div id="progress-fill"></div>
+                </div>
+        
+                <p id="progress-text">0%</p>
+        
+            </div>
+        
+        </section>
+        
+        <section class="panel" id="statistics-section">
+        
+            <h2>📊 Products by Category</h2>
+        
+            <canvas id="categoryChart"></canvas>
+            <div class="chart-info">
+
+    <div class="mini-card">
+        📦
+        <h3 id="best-category">-</h3>
+        <p>Top Category</p>
+    </div>
+
+    <div class="mini-card">
+        🏆
+        <h3 id="total-categories">0</h3>
+        <p>Categories</p>
+    </div>
+
+</div>
+        
+        </section>
+
+        <!-- Add Product -->
+
+        <section class="panel">
+
+            <h2>➕ Add / Edit Product</h2>
+
+            <div class="form-grid">
+
+                <input
+                    id="name"
+                    type="text"
+                    placeholder="Product Name"
+                >
+
+                <input
+                    id="price"
+                    type="number"
+                    placeholder="Price"
+                >
+
+                <input
+                    id="stock"
+                    type="number"
+                    placeholder="Stock"
+                >
+
+                <input
+                    id="category"
+                    type="text"
+                    placeholder="Category"
+                >
+
+            </div>
+
+            <div class="buttons">
+
+                <button
+                    id="save-button"
+                    onclick="addProduct()"
+                >
+                    💾 Save Product
+                </button>
+
+                <button
+                    onclick="exportCSV()"
+                >
+                    📥 Export CSV
+                </button>
+                <button onclick="exportPDF()">
+                    📄 Export PDF
+                </button>
+
+            </div>
+
+        </section>
+
+        <!-- Search -->
+
+        <section class="panel">
+
+            <h2>🔍 Search Product</h2>
+
+            <input
+                id="search"
+                type="text"
+                placeholder="Search by product name..."
+                onkeyup="loadProducts()"
+            >
+
+        </section>
+
+        <!-- Product List -->
+
+        <section class="panel" id="products-section">
+
+            <h2>📋 Product List</h2>
+
+            <div id="product-list"></div>
+
+        </section>
+
+    </main>
+
+</div>
+
+<script src="script.js"></script>
+
+</body>
+</html>

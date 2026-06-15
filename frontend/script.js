@@ -1,4 +1,5 @@
-const API_URL = "http://127.0.0.1:8000";
+const API_URL =
+"https://ecommerce-management-system-783c.onrender.com";
 
 let editingProductId = null;
 let categoryChart = null;
@@ -358,7 +359,7 @@ function login(){
     const email = document.getElementById("login-email").value;
     const password = document.getElementById("login-password").value;
 
-    if(email === "admin@test.com" && password === "1234"){
+    if(email === "admin@zisan.com" && password === "Portfolio2026"){
 
         document.getElementById("login-screen").style.display = "none";
 
